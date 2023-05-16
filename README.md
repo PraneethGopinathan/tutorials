@@ -1,6 +1,6 @@
 # Contents
 
-📚 - [Lessons](contents.md)
+📚 - [Lessons](lessons/contents.md)
 
 # Social
 
