@@ -15,13 +15,13 @@ The `hpa` is purely based on the `cpu` utilization. The `hpa` can use the resour
 ### **1. Custom resource definitions**
 The entire resource will be created under the `monitoring` namespace
 
-`kubectl create -f autoscale/0-setup/`
+`kubectl create -f 0-setup/`
 
 ### **2. Components**
 Create the essential components like prometheus-operator, prometheus-adapter, grafana, prometheus, rules etc. 
 > *prometheusAdapter-configMap.yaml* add the custom metrics name that matches the application metrics, here it *random_number_total* in both fastapi app and configmap
 
-`kubectl create -f autoscale/1-components/`
+`kubectl create -f 1-components/`
 
 Once components are created and starts running expose the prometheus-operated svc to access the prometheus from localhost
 
@@ -29,10 +29,10 @@ Once components are created and starts running expose the prometheus-operated sv
 
 `kube -n monitoring port-forward svc/grafana 3000` -> Grafana
 
-### **3. cadvisor**
+### **3. Pod metrics**
 To get the top pods create the cadvisor to scrape the CPU and Memory
 
-`kubectl create -f autoscale/2-cadvisor/`
+`kubectl create -f components.yaml`
 
 > After setting all sometimes the custom metrics doesn't work please verify that servicemonitor for the svc is up (eg; servicemonitor for server, worker)
 
